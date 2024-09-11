@@ -5,21 +5,13 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    //Craete object of type CinemachineVirtualCamera
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    
-
-    // Start is called before the first frame update
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-        cinemachineVirtualCamera.LookAt = player.transform;
-        cinemachineVirtualCamera.Follow = player.transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); //Find player in the game world
+        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>(); //get the camera's component
+        cinemachineVirtualCamera.LookAt = player.transform; //Set the camera's look at to the player's position
+        cinemachineVirtualCamera.Follow = player.transform; //Set the camera's follow to the player's position
     }
 }

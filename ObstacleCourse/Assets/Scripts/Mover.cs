@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
+    //serialize fields for duration of move, speed, time to wait, and initial delay
     [SerializeField] float fltMoveTime;
     [SerializeField] float fltMoveSpeed;
     [SerializeField] float fltTimeToWait;
@@ -21,11 +22,11 @@ public class Mover : MonoBehaviour
     }
     private void Update()
     {
-        //Wait down the initial delay
+        //Wait for the initial delay before moving
         if (fltInitialDelay > .01f)
         {
-            fltInitialDelay -= Time.deltaTime;
-            return;
+            fltInitialDelay -= Time.deltaTime; //Reduce the initial delay by elapsed time
+            return; //Do not run any more in Update method
         }
 
 
@@ -46,9 +47,8 @@ public class Mover : MonoBehaviour
         //if move time is not equal to 0, move the object at given speed
         if (fltResetMoveTime > 0.01f)
         {
-            transform.Translate(fltMoveSpeed * Time.deltaTime, 0, 0);
-            //decrease move time by the change in time
-            fltResetMoveTime -= Time.deltaTime;
+            transform.Translate(fltMoveSpeed * Time.deltaTime, 0, 0); //Move object in x-direction
+            fltResetMoveTime -= Time.deltaTime; //decrease move time by the change in time
         }
         //Otherwise, reverse move speed, reset move time and time to wait
         else

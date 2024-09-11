@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7838705ef9e82904a8dc9ed5a4dcc0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fltYSpeed: 10
-  fltYRotation: 150
+  fltMoveSpeed: 10
+  fltRotationSpeed: 150
 --- !u!54 &63790075352002645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -175,3 +175,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeath: {fileID: 7189865306072174507, guid: bf81b43d42021cc41b7604221ff6fbf6, type: 3}
+  fltReloadWaitTime: 2.5

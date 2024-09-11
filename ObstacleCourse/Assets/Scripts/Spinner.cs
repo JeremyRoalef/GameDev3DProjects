@@ -5,17 +5,27 @@ using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
+
+    //Create serialized field attributes for spinner properties
     [SerializeField] float fltRotateSpeed;
     [SerializeField] float fltSpinDelay;
     [SerializeField] int intNumberOfBlades;
     [SerializeField] GameObject bladePrefab;
     [SerializeField] int intSpinDirection;
+    [SerializeField] float fltInitialWaitTime;
+
+    //create boolean for when object is rotating
     bool boolIsRotating = false;
 
-
-    // Update is called once per frame
     void Update()
     {
+        //If there is an initial wait time, wait out the time
+        if (fltInitialWaitTime > 0.01f)
+        {
+            fltInitialWaitTime -=Time.deltaTime; //Reduce the time to wait by the elapsed time
+            return; //Do not run any more in the Update method
+        }
+        //If the object is not rotating, rotate object after the delay
         if (!boolIsRotating)
         {
             StartCoroutine(RotateObject());
@@ -25,24 +35,25 @@ public class Spinner : MonoBehaviour
     //Create coroutine to cause obejct to rotate
     IEnumerator RotateObject()
     {
-        int intRotateAmount = 180 / intNumberOfBlades;
+        int intRotateAmount = 180 / intNumberOfBlades; //Get degree amount that the object needs to rotate based on the number of blades
 
-        boolIsRotating = true;
+        boolIsRotating = true; //Object is now rotating
+
         // Calculate the target rotation
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = startRotation * Quaternion.Euler(0, intRotateAmount * intSpinDirection, 0);
 
+        //while there is an angle difference between the initial rotation and end rotation, rotate the object towards the end rotation
         while (Quaternion.Angle(transform.rotation, endRotation) > 0.01f) //calculates the angle between two rotations
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, endRotation, fltRotateSpeed * Time.deltaTime);
             yield return null; // Wait for the next frame
 
         }
-        transform.rotation = endRotation;
 
-        yield return new WaitForSeconds(fltSpinDelay);
-
-        boolIsRotating = false;
+        transform.rotation = endRotation; //Lock rotation to end rotation to prevent calculation errors
+        yield return new WaitForSeconds(fltSpinDelay); //Delay the rotation by the given spin delay
+        boolIsRotating = false; //Object is no longer rotating
     }
 
     //Create public method for use by bladeManagerEditor script
