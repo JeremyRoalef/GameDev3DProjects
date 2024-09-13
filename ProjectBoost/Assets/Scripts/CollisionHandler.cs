@@ -4,8 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    //Serialized fields
     [SerializeField] float fltReloadDelay = 1f;
     [SerializeField] float fltNextLevelDelay = 1f;
+    [SerializeField] AudioClip CrashSFX;
+    [SerializeField] AudioClip successSFX;
+
+    //Cashe references
+    AudioSource audioSource;
+
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -25,11 +37,11 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-
     //Method to run when player crashes into dangerous obstacles
     void StartCrashSequence()
     {
         GetComponent<Movement>().enabled = false; //Disable player movement ability
+        PlayCrashSound();
         ReloadScene();
         KillPlayer();
     }
@@ -37,6 +49,8 @@ public class CollisionHandler : MonoBehaviour
     //Method to run when the player finishes the level
     void StartFinishSequence()
     {
+        GetComponent<Movement>().enabled = false; //Disable player movement ability
+        PlaySuccessSound();
         LoadNextScene();
     }
 
@@ -66,6 +80,17 @@ public class CollisionHandler : MonoBehaviour
         StartCoroutine(WaitToReloadScene());
     }
 
+    //Method to play the crash sfx
+    void PlayCrashSound()
+    {   
+        audioSource.PlayOneShot(successSFX);
+    }
+
+    //Method to play the success sfx
+    void PlaySuccessSound()
+    {
+        audioSource.PlayOneShot(successSFX);
+    }
 
     //IEnumerator to wait to reload the current scene
     IEnumerator WaitToReloadScene()

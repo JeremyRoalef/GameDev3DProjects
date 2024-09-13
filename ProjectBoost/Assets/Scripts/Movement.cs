@@ -15,17 +15,17 @@ public class Movement : MonoBehaviour
     //Create serialized fields
     [SerializeField] float fltThrustSpeed = 1f;
     [SerializeField] float fltRotateSpeed = 1f;
-    AudioSource thrustSFX;
-
+    [SerializeField] AudioClip thrustSFX;
 
     //Create object types
     Rigidbody playerRb;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>(); //Get rb attached to the same object the script is on
-        thrustSFX = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -93,15 +93,15 @@ public class Movement : MonoBehaviour
     void PlayThrustSound()
     {
         //If the thrust sfx is not playing, play the sfx
-        if (!thrustSFX.isPlaying)
+        if (!audioSource.isPlaying)
         {
-            thrustSFX.Play();
+            //audioSource.PlayOneShot(thrustSFX);
         }
     }
     
     //Method responsible for turning the thrust off
     void StopThrustSound()
     {
-        thrustSFX.Stop();
+        audioSource.Stop();
     }
 }
