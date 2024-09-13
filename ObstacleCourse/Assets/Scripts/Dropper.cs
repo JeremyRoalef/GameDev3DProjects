@@ -5,24 +5,23 @@ using UnityEngine;
 public class Dropper : MonoBehaviour
 {
     [SerializeField] float fltDropWaitTime;
-    private new MeshRenderer renderer;
-    private Rigidbody rigidBody;
+    private new MeshRenderer renderer; //Create MeshRenderer object
+    private Rigidbody rigidBody; //Create Rigidbody object
 
-    // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
-        renderer.enabled = false;
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.useGravity = false;
+        renderer = GetComponent<MeshRenderer>(); //Get the MeshRenderer component attached to this object
+        renderer.enabled = false; //Hide the object's renderer
+        rigidBody = GetComponent<Rigidbody>(); //Get the Rigidbody component attached to this object
+        rigidBody.useGravity = false; //Turn off Newton's Law
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //If the object has time to wait, wait out the time
         if (Time.time >= fltDropWaitTime)
         {
-            Debug.Log("Time has been elapsed");
+            //Debug.Log("Time has been elapsed");
             //enable object's components
             renderer.enabled = true;
             rigidBody.useGravity = true;

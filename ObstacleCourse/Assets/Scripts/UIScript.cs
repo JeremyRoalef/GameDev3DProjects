@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class UIScript : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI timeText; //Get time text
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Initialize time text to initial time
-        timeText.text = Time.time.ToString() + "s";
+        timeText.text = Time.time.ToString() + "s"; //Initialize time text to initial time
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateTime();
@@ -22,8 +19,6 @@ public class UIScript : MonoBehaviour
 
     void UpdateTime()
     {
-        //Update time text by elapsed time
-        timeText.text = string.Format("{0:F1}", Time.time) + "s";
-            
+        timeText.text = string.Format("{0:F1}", Time.time) + "s"; //Update time text by elapsed time
     }
 }

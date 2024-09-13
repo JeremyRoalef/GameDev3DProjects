@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - EndLocation
   - Camera
+  - Collectible
   layers:
   - Default
   - TransparentFX

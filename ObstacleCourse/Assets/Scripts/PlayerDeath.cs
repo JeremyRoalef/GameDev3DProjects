@@ -14,8 +14,8 @@ public class PlayerDeath : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            //instantiate particle system
-            Instantiate(playerDeath, transform.position, transform.rotation);
+
+            Instantiate(playerDeath, transform.position, transform.rotation); //instantiate particle system
 
             //destroy player (Hide the player to continue using script)
             gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -26,7 +26,7 @@ public class PlayerDeath : MonoBehaviour
             GameObject camera = GameObject.FindGameObjectWithTag("Camera"); //Get object in scene tagged "Camera"
             CinemachineVirtualCamera cmvc = camera.GetComponent<CinemachineVirtualCamera>(); //Get camera's CinemachineVirtualCamera component
             
-            //Set the component's Follow and Look At to none
+            //Set the component's Follow and Look At to nothing
             cmvc.LookAt = null;
             cmvc.Follow = null;
 

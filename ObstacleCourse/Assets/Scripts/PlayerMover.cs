@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] float fltMoveSpeed; //Get the speed that the player will move at
-    [SerializeField] float fltRotationSpeed; //Get the rotation speed the will will rotate at
+    [SerializeField] float fltRotationSpeed; //Get the rotation speed the player will rotate at
+
 
     void Update()
     {

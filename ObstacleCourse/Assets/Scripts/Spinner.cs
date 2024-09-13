@@ -39,20 +39,19 @@ public class Spinner : MonoBehaviour
 
         boolIsRotating = true; //Object is now rotating
 
-        // Calculate the target rotation
+        //Get current rotation & calculate the target rotation
         Quaternion startRotation = transform.rotation;
         Quaternion endRotation = startRotation * Quaternion.Euler(0, intRotateAmount * intSpinDirection, 0);
 
-        //while there is an angle difference between the initial rotation and end rotation, rotate the object towards the end rotation
+        //While there is an angle difference between the initial rotation and end rotation, rotate the object towards the end rotation
         while (Quaternion.Angle(transform.rotation, endRotation) > 0.01f) //calculates the angle between two rotations
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, endRotation, fltRotateSpeed * Time.deltaTime);
-            yield return null; // Wait for the next frame
-
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, endRotation, fltRotateSpeed * Time.deltaTime); //Rotate object towards end rotation at given speed
+            yield return new WaitForSeconds(0); // Wait no time
         }
 
-        transform.rotation = endRotation; //Lock rotation to end rotation to prevent calculation errors
-        yield return new WaitForSeconds(fltSpinDelay); //Delay the rotation by the given spin delay
+        transform.rotation = endRotation; //Lock rotation to the end rotation to prevent calculation errors
+        yield return new WaitForSeconds(fltSpinDelay); //Delay the next rotation by the given spin delay
         boolIsRotating = false; //Object is no longer rotating
     }
 
@@ -62,6 +61,7 @@ public class Spinner : MonoBehaviour
         //Loop through all the children in the parent object and immediately destroy them
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
+            //Destroy the child at index i
             DestroyImmediate(transform.GetChild(i).gameObject); //DestroyImmediate used when using unity editor
         }
 
@@ -80,8 +80,6 @@ public class Spinner : MonoBehaviour
 
             //Set its parent object to object the script is on
             newBlade.transform.SetParent(transform);
-            //Set its scale to parent object's scale
-
         }
     }
 }
