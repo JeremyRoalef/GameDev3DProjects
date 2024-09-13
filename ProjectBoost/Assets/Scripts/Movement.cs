@@ -8,12 +8,16 @@ using UnityEngine; //the namespace all the monobehavior content exists
   of the object it is attached to. Collision class should account for the collision detection on an object
 ->Use encapsulation in code. (Getters & Setters, private attributes, etc.)
  */
+
+
 public class Movement : MonoBehaviour 
 {
+    Rigidbody playerRb; //Create a rigidbody object to store player rigidbody
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody>(); //Get rb attached to the same object the script is on
     }
 
     // Update is called once per frame
@@ -48,7 +52,8 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)) //Set KeyCode enumeration type to Space.
         {
-            Debug.Log("Space bar pressed (Thrusting)");
+            //F = ma, meaning a = F/m. Acceleration of object from force is dependent on amount of force & object's mass
+            playerRb.AddRelativeForce(Vector3.up); //Add force to rb relative to its own up direction (not world space)
         }
     }
 }
