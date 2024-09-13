@@ -12,7 +12,11 @@ using UnityEngine; //the namespace all the monobehavior content exists
 
 public class Movement : MonoBehaviour 
 {
-    Rigidbody playerRb; //Create a rigidbody object to store player rigidbody
+    //Create serialized fields
+    [SerializeField] float fltThrustSpeed = 1f;
+
+    //Create object types
+    Rigidbody playerRb;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +57,9 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) //Set KeyCode enumeration type to Space.
         {
             //F = ma, meaning a = F/m. Acceleration of object from force is dependent on amount of force & object's mass
-            playerRb.AddRelativeForce(Vector3.up); //Add force to rb relative to its own up direction (not world space)
+
+            Vector3 forceAmount = Vector3.up * fltThrustSpeed * Time.deltaTime; //Vector3.up is the object's relative up direction
+            playerRb.AddRelativeForce(forceAmount); //Add force to rb relative to its own direction (not world space)
         }
     }
 }
