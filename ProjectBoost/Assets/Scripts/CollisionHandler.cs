@@ -4,23 +4,40 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    [SerializeField] float fltReloadDelay = 1f;
+    [SerializeField] float fltNextLevelDelay = 1f;
+
     void OnCollisionEnter(Collision other)
     {
         switch(other.gameObject.tag) {
             case "Dangerous":
-                ReloadScene();
-                KillPlayer();
+                StartCrashSequence();
                 break;
             case "Fuel":
                 RefuelPlayer();
                 break;
             case "Finish":
-                LoadNextScene();
+                StartFinishSequence();
                 break;
             default:
                 //Do nothing
                 break;
         }
+    }
+
+
+    //Method to run when player crashes into dangerous obstacles
+    void StartCrashSequence()
+    {
+        GetComponent<Movement>().enabled = false; //Disable player movement ability
+        ReloadScene();
+        KillPlayer();
+    }
+
+    //Method to run when the player finishes the level
+    void StartFinishSequence()
+    {
+        LoadNextScene();
     }
 
     //Method to kill player
@@ -41,7 +58,7 @@ public class CollisionHandler : MonoBehaviour
         Debug.Log("Collision should load next scene");
         StartCoroutine(WaitToLoadNextScene());
     }
-    
+
     //Method to load the current scene
     void ReloadScene()
     {
@@ -49,13 +66,14 @@ public class CollisionHandler : MonoBehaviour
         StartCoroutine(WaitToReloadScene());
     }
 
+
     //IEnumerator to wait to reload the current scene
     IEnumerator WaitToReloadScene()
     {
         int intCurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         //Wait to reload current scene
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(fltReloadDelay);
         //Reload the current scene
         SceneManager.LoadScene(intCurrentSceneIndex);
     }
@@ -66,7 +84,7 @@ public class CollisionHandler : MonoBehaviour
         int intNextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         //Wait to load next scene
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(fltNextLevelDelay);
 
         //Determine if there is a next scene in build
         bool boolThereIsNextScene = intNextSceneIndex < SceneManager.sceneCountInBuildSettings;
