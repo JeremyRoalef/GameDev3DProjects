@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
         //If the thrust sfx is not playing, play the sfx
         if (!audioSource.isPlaying)
         {
-            //audioSource.PlayOneShot(thrustSFX);
+            audioSource.PlayOneShot(thrustSFX);
         }
     }
     

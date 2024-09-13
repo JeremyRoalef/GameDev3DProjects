@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fltReloadDelay: 1.5
   fltNextLevelDelay: 2.5
-  CrashSFX: {fileID: 8300000, guid: 9308792f6564626488f73ee67f9cf105, type: 3}
+  crashSFX: {fileID: 8300000, guid: 9308792f6564626488f73ee67f9cf105, type: 3}
   successSFX: {fileID: 8300000, guid: fe1528952cd2b3b448ea4958701547db, type: 3}
 --- !u!82 &1131072175622203469
 AudioSource:

@@ -7,11 +7,14 @@ public class CollisionHandler : MonoBehaviour
     //Serialized fields
     [SerializeField] float fltReloadDelay = 1f;
     [SerializeField] float fltNextLevelDelay = 1f;
-    [SerializeField] AudioClip CrashSFX;
+    [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip successSFX;
 
     //Cashe references
     AudioSource audioSource;
+
+    //private attributes
+    bool boolIsTransitioning = false;
 
 
     void Start()
@@ -40,6 +43,10 @@ public class CollisionHandler : MonoBehaviour
     //Method to run when player crashes into dangerous obstacles
     void StartCrashSequence()
     {
+        if (boolIsTransitioning) {return;}
+
+        audioSource.Stop();
+        boolIsTransitioning = true;
         GetComponent<Movement>().enabled = false; //Disable player movement ability
         PlayCrashSound();
         ReloadScene();
@@ -49,6 +56,10 @@ public class CollisionHandler : MonoBehaviour
     //Method to run when the player finishes the level
     void StartFinishSequence()
     {
+        if (boolIsTransitioning) {return;}
+
+        audioSource.Stop();
+        boolIsTransitioning = true;
         GetComponent<Movement>().enabled = false; //Disable player movement ability
         PlaySuccessSound();
         LoadNextScene();
@@ -82,8 +93,8 @@ public class CollisionHandler : MonoBehaviour
 
     //Method to play the crash sfx
     void PlayCrashSound()
-    {   
-        audioSource.PlayOneShot(successSFX);
+    {
+        audioSource.PlayOneShot(crashSFX);
     }
 
     //Method to play the success sfx

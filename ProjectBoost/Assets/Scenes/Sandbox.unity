@@ -317,33 +317,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6619174327761317908, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: thrustSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 5c324d8dfab95be439995be37989a671, type: 3}
     - target: {fileID: 813958144719580712, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 813958144719580712, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1777126143569816750, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: CrashSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 9308792f6564626488f73ee67f9cf105, type: 3}
-    - target: {fileID: 1777126143569816750, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: successSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: fe1528952cd2b3b448ea4958701547db, type: 3}
-    - target: {fileID: 1777126143569816750, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: fltReloadDelay
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1777126143569816750, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: fltNextLevelDelay
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4607706957260817640, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,18 +359,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607706957260817640, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106776139761516396, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106776139761516396, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106776139761516396, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
-      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
