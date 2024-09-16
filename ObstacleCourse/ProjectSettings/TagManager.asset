@@ -9,6 +9,9 @@ TagManager:
   - EndLocation
   - Camera
   - Collectible
+  - Box
+  - PressurePlate
+  - WallToMove
   layers:
   - Default
   - TransparentFX
