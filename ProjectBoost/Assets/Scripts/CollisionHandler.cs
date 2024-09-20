@@ -26,6 +26,21 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        /*
+         * Problem with collision: Unity collision tags do not work as expected when it comes to parent and child objects. If a parent
+         * object's tag is tagged "parent" and a child object tag is tagged "child", when the player collides with the child object, the
+         * parent object's tag is returned.
+         * 
+         * Solution to collision: Change the collider to a trigger. For the Killbox collision, this will work. However, if I wanted to check
+         * if the player collides with the wall, let's say, I would not want to use a trigger because that will allow the player to phase
+         * through the wall. This would require using the ContactPoint class to get the tag of the real object responsible for the collision,
+         * not just the parent object.
+         * 
+         * Credit for idea - ChatGPT
+         */
+
+        //Debug.Log("Collision occurred");
+        //Debug.Log("Tag of object collision: " + other.gameObject.tag);
         switch(other.gameObject.tag) {
             case "Dangerous":
                 StartCrashSequence();
@@ -38,6 +53,20 @@ public class CollisionHandler : MonoBehaviour
                 break;
             default:
                 //Do nothing
+                break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log("trigger entered");
+        //Debug.Log("Tag of trigger collider: " + other.gameObject.tag);
+
+        switch (other.gameObject.tag)
+        {
+            case "Killbox":
+                Debug.Log("Killing player");
+                Destroy(gameObject);
                 break;
         }
     }

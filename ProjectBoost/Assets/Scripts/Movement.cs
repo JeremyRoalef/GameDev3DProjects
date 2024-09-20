@@ -13,8 +13,8 @@ using UnityEngine; //the namespace all the monobehavior content exists
 public class Movement : MonoBehaviour 
 {
     //Create serialized fields
-    [SerializeField] float fltThrustSpeed = 1f;
-    [SerializeField] float fltRotateSpeed = 1f;
+    [SerializeField] float fltVerticalSpeed = 1f;
+    [SerializeField] float fltHorizontalSpeed = 1f;
     [SerializeField] AudioClip thrustSFX;
     [SerializeField] ParticleSystem mainThrustParticles;
     [SerializeField] ParticleSystem leftThrustParticles;
@@ -34,12 +34,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ThrustPlayer(); //Get the input from the user
-        RotatePlayer(); // Get the input from the user
+        MovePlayerVertically(); //Get the input from the user
+        MovePlayerHorizontally(); // Get the input from the user
     }
 
     //Method to determine if player should rotate
-    void RotatePlayer()
+    void MovePlayerHorizontally()
     {
         //If player is pressing both rotate buttons, don't rotate
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
@@ -47,16 +47,16 @@ public class Movement : MonoBehaviour
             PlayLeftThrustParticles();
             PlayRightThrustParticles();
         }
-        //Otherwise, if they're pressing the ccw rotation button, rotate ccw
+        //Otherwise, if they're pressing A, move player to the left
         else if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(fltRotateSpeed);
+            playerRb.AddRelativeForce(new Vector3(-fltHorizontalSpeed, 0, 0));
             PlayRightThrustParticles();
         }
-        //Otherwise, if they're pressing the cw rotation button, rotate cw
+        //Otherwise, if they're pressing D, move player to the right
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-fltRotateSpeed);
+            playerRb.AddRelativeForce(new Vector3(fltHorizontalSpeed, 0, 0));
             PlayLeftThrustParticles();
         }
         else
@@ -66,22 +66,8 @@ public class Movement : MonoBehaviour
         }
     }
 
-    //Method to apply the rotation
-    void ApplyRotation(float rotateDirection)
-    {
-        //Freeze the physics rotation while rotating manually
-        playerRb.freezeRotation = true;
-
-        //RotatePlayer object around z-axis
-        Vector3 rotateAmount = Vector3.forward * rotateDirection * Time.deltaTime;
-        transform.Rotate(rotateAmount);
-
-        //Stop freezing the physics rotation
-        playerRb.freezeRotation = false;
-    }
-
     //Method to thrust the player
-    void ThrustPlayer()
+    void MovePlayerVertically()
     {
         if (Input.GetKey(KeyCode.Space)) //Set KeyCode enumeration type to Space
         {
@@ -98,7 +84,7 @@ public class Movement : MonoBehaviour
     {
         //F = ma, meaning a = F/m. Acceleration of object from force is dependent on amount of force & object's mass
 
-        Vector3 forceAmount = Vector3.up * fltThrustSpeed * Time.deltaTime; //Vector3.up is the object's relative up direction
+        Vector3 forceAmount = Vector3.up * fltVerticalSpeed * Time.deltaTime; //Vector3.up is the object's relative up direction
         playerRb.AddRelativeForce(forceAmount); //Add force to rb relative to its own direction (not world space)
 
         //Play the thrust sfx
