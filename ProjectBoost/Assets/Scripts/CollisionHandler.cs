@@ -11,17 +11,24 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip successSFX;
     [SerializeField] ParticleSystem crashParticles;
     [SerializeField] ParticleSystem successParticles;
+    [SerializeField] GameObject gameUI;
 
     //Cashe references
     AudioSource audioSource;
+    HealthSystem playerHealthSystem;
 
     //private attributes
     bool boolIsTransitioning = false;
 
+    void Awake()
+    {
+        gameUI = GameObject.FindGameObjectWithTag("UI");
+    }
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        playerHealthSystem = GetComponent<HealthSystem>();
     }
 
     void OnCollisionEnter(Collision other)
@@ -43,7 +50,15 @@ public class CollisionHandler : MonoBehaviour
         //Debug.Log("Tag of object collision: " + other.gameObject.tag);
         switch(other.gameObject.tag) {
             case "Dangerous":
-                StartCrashSequence();
+                //get the object's damage & reduce player's health
+                int intEnemyDamage = other.gameObject.GetComponent<HealthSystem>().DealDamage();
+                TakeDamageSequence(intEnemyDamage);
+
+                //Get the player's collision damage & reduce enemy's health
+                int intPlayerDamage = playerHealthSystem.DealDamage();
+                other.gameObject.GetComponent<HealthSystem>().TakeDamage(intPlayerDamage);
+                Debug.Log("Enemy HP: " + other.gameObject.GetComponent<HealthSystem>().getHp());
+
                 break;
             case "Fuel":
                 RefuelPlayer();
@@ -55,6 +70,25 @@ public class CollisionHandler : MonoBehaviour
                 //Do nothing
                 break;
         }
+    }
+
+    private void TakeDamageSequence(int intEnemyDamage)
+    {
+        //Apply damage to player's health
+        if (playerHealthSystem.TakeDamage(intEnemyDamage))
+        {
+            StartDeathSequence();
+        }
+
+        //cast integers of player hp to a float
+        float fltCurrentHp = (float)playerHealthSystem.getHp();
+        float fltMaxHp = (float)playerHealthSystem.getMaxHp();
+
+        //get proportion of remaining hp
+        float fltHealthProportion = fltCurrentHp / fltMaxHp;
+
+        //update health image
+        gameUI.GetComponent<GameSceneUIHandler>().UpdateHealthImage(fltHealthProportion);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,9 +109,10 @@ public class CollisionHandler : MonoBehaviour
     }
 
     //Method to run when player crashes into dangerous obstacles
-    void StartCrashSequence()
+    void StartDeathSequence()
     {
         if (boolIsTransitioning) {return;}
+
 
         boolIsTransitioning = true;
         audioSource.Stop();
