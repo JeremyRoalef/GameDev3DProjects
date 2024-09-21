@@ -9,20 +9,42 @@ using UnityEngine; //the namespace all the monobehavior content exists
 ->Use encapsulation in code. (Getters & Setters, private attributes, etc.)
  */
 
-
+/*
+ * This script is responsible for everthing the player does while moving. Below are all the things that this script controls:
+ * 
+ * 1) Moving player vertically & horizontally. The player will move vertically by applying a relative force upward to the player's rigidbody when
+ * the space key is pressed and held down. The player will move horizontally by applying a relative force leftward/rightward to the player's
+ * rigidbody when the a/d key is pressed and held down.
+ * 
+ * 2) Audio & Particle systems. When the player move, the respective audio and particles will play.
+ * 
+ * 3) Updating game UI for distance traveled & remaining fuel.
+ * 
+ */
 public class Movement : MonoBehaviour 
 {
     //Create serialized fields
     [SerializeField] float fltVerticalSpeed = 1f;
     [SerializeField] float fltHorizontalSpeed = 1f;
+    [SerializeField] float fltMaxFuelTime;
     [SerializeField] AudioClip thrustSFX;
     [SerializeField] ParticleSystem mainThrustParticles;
     [SerializeField] ParticleSystem leftThrustParticles;
     [SerializeField] ParticleSystem rightThrustParticles;
 
-    //Create object types
+    //Cashe References
     Rigidbody playerRb;
     AudioSource audioSource;
+    GameObject gameUI;
+
+    //Attributes
+    float fltRemainingFuelTime;
+
+    void Awake()
+    {
+        gameUI = GameObject.FindGameObjectWithTag("UI");
+        fltRemainingFuelTime = fltMaxFuelTime;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +57,21 @@ public class Movement : MonoBehaviour
     void Update()
     {
         MovePlayerVertically(); //Get the input from the user
-        MovePlayerHorizontally(); // Get the input from the user
+        MovePlayerHorizontally(); //Get the input from the user
+        UpdateDistanceTraveledText(); //Update the distance traveled text in the gameUI
+        UpdateFuelImage(); //Update the fuel image in the gameUI
+    }
+
+    void UpdateFuelImage()
+    {
+        float fltRemainingFuelProportion = fltRemainingFuelTime/fltMaxFuelTime;
+        gameUI.GetComponent<GameSceneUIHandler>().UpdateFuelImage(fltRemainingFuelProportion);
+    }
+
+    private void UpdateDistanceTraveledText()
+    {
+        float fltDistanceTraveled = transform.position.y;
+        gameUI.GetComponent<GameSceneUIHandler>().UpdateDistanceTraveled(fltDistanceTraveled);
     }
 
     //Method to determine if player should rotate
@@ -71,6 +107,12 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)) //Set KeyCode enumeration type to Space
         {
+            fltRemainingFuelTime -= Time.deltaTime;
+            if (fltRemainingFuelTime <= 0)
+            {
+                StopThrustingSequence();
+                return;
+            }
             StartThrustingSequence();
         }
         else

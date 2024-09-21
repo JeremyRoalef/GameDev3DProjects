@@ -65,8 +65,11 @@ public class CollisionHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Killbox":
-                Debug.Log("Killing player");
+                //Debug.Log("Killing player");
                 Destroy(gameObject);
+                break;
+            default:
+                //Debug.Log("Tag didnt match any current tag");
                 break;
         }
     }

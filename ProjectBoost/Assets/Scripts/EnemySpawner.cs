@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         //based on the number
         int intSpawnPosition = GenerateRandomNumber(0,3); //3 is excludeded
 
-        Debug.Log("spawn number = " + intSpawnPosition);
+        //Debug.Log("spawn number = " + intSpawnPosition);
 
         switch (intSpawnPosition)
         {
@@ -67,16 +67,16 @@ public class EnemySpawner : MonoBehaviour
 
     void StartSpawnTopSequence()
     {
-        Debug.Log("top spawn sequence started");
+        //Debug.Log("top spawn sequence started");
 
         //Create a spawn position for the object
         float fltChangeInPosition = GenerateRandomNumber(-fltTopSpawnInterval, fltTopSpawnInterval); //the change from the top spawn location to new spawn location
 
         Vector3 spawnPos = topEnemySpawner.transform.position; //The top spawn location
-        Debug.Log("Current spawn position: " + spawnPos);
+        //Debug.Log("Current spawn position: " + spawnPos);
 
         spawnPos.x += fltChangeInPosition; //Change the spawn location
-        Debug.Log("New spawn position: " + spawnPos);
+        //Debug.Log("New spawn position: " + spawnPos);
 
         //Create asteroid & save in temp var
         GameObject asteroid = Instantiate(bigAsteroid, spawnPos, Quaternion.identity);
@@ -94,20 +94,20 @@ public class EnemySpawner : MonoBehaviour
             asteroid.GetComponent<AsteroidMovement>().SetAsteroidVelocityRight();
         }
 
-        Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
+        //Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
     }
     void StartSpawnLeftSequence()
     {
-        Debug.Log("left spawn sequence started");
+        //Debug.Log("left spawn sequence started");
 
         //Create a spawn position for the object
         float fltChangeInPosition = GenerateRandomNumber(-fltSideSpawnInterval, fltSideSpawnInterval); //the change from the left spawn location to new spawn location
 
         Vector3 spawnPos = leftEnemySpawner.transform.position; //The left spawn location
-        Debug.Log("Current spawn position: " + spawnPos);
+        //Debug.Log("Current spawn position: " + spawnPos);
 
         spawnPos.y += fltChangeInPosition; //Change the spawn location
-        Debug.Log("New spawn position: " + spawnPos);
+        //Debug.Log("New spawn position: " + spawnPos);
 
         //Create asteroid & save in temp var
         GameObject asteroid = Instantiate(bigAsteroid, spawnPos, Quaternion.identity);
@@ -125,20 +125,20 @@ public class EnemySpawner : MonoBehaviour
             asteroid.GetComponent<AsteroidMovement>().SetAsteroidVelocityRight();
         }
 
-        Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
+        //Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
     }
     void StartSpawnRightSequence()
     {
-        Debug.Log("right spawn sequence started");
+        //Debug.Log("right spawn sequence started");
 
         //Create a spawn position for the object
         float fltChangeInPosition = GenerateRandomNumber(-fltSideSpawnInterval, fltSideSpawnInterval); //the change from the left spawn location to new spawn location
 
         Vector3 spawnPos = rightEnemySpawner.transform.position; //The left spawn location
-        Debug.Log("Current spawn position: " + spawnPos);
+        //Debug.Log("Current spawn position: " + spawnPos);
 
         spawnPos.y += fltChangeInPosition; //Change the spawn location
-        Debug.Log("New spawn position: " + spawnPos);
+        //Debug.Log("New spawn position: " + spawnPos);
 
         //Create asteroid & save in temp var
         GameObject asteroid = Instantiate(bigAsteroid, spawnPos, Quaternion.identity);
@@ -156,7 +156,7 @@ public class EnemySpawner : MonoBehaviour
             asteroid.GetComponent<AsteroidMovement>().SetAsteroidVelocityLeft();
         }
 
-        Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
+        //Debug.Log("Asteroid velocity: " + asteroid.GetComponent<Rigidbody>().velocity);
     }
 
     //methods to generate a random number. Im sick of typing out random.range!

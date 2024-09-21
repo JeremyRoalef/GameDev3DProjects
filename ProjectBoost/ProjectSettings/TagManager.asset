@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dangerous
-  - KillBox
   - CameraFollow
   - Fuel
+  - UI
+  - Killbox
   layers:
   - Default
   - TransparentFX

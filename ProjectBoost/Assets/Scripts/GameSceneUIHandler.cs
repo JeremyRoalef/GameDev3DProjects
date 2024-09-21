@@ -16,7 +16,6 @@ using UnityEngine.UI;
  *    
  * 3) Fuel bar will update when the player moves upward (not side to side). This will be done by changing the width of the fuel bar image to 0.
  *    The width will be calculated based on the proportion of fuel remaining being set to the proportion of the fuel bar width.
- * 
  */
 
 public class GameSceneUIHandler : MonoBehaviour
@@ -25,9 +24,6 @@ public class GameSceneUIHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI textDistanceTraveled, textTargetDistance;
     [SerializeField] Image imageFuelBar, imageHealthBar;
     [SerializeField][Range(0, 1)] float fltProportionSlider; //Test if fuel bar & health bar image does change
-
-    //Cashe References
-    GameObject player;
 
     //Attributes
     float fltFuelBarMaxWidth; //Multiply this value by the proportion of remaining fuel to accurately show remaining fuel
@@ -45,23 +41,18 @@ public class GameSceneUIHandler : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        textDistanceTraveled.text = (player.transform.position.y).ToString();
         textTargetDistance.text = "500"; //Change this when adding level system
     }
 
     void Update()
     {
-        UpdateDistanceTraveled();
-        UpdateFuelImage(fltProportionSlider);
-        UpdateHealthImage(fltProportionSlider);
+        //UpdateFuelImage(fltProportionSlider);
+        //UpdateHealthImage(fltProportionSlider);
     }
 
-    void UpdateDistanceTraveled()
+    public void UpdateDistanceTraveled(float fltDistanceTraveled)
     {
-        float fltDistance = player.transform.position.y;
-        textDistanceTraveled.text = fltDistance.ToString("F0");
+        textDistanceTraveled.text = fltDistanceTraveled.ToString("F0");
     }
 
     public void UpdateFuelImage(float fltRemaingFuelProportion)
