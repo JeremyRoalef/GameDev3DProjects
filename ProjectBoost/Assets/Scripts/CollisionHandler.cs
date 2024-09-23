@@ -57,7 +57,7 @@ public class CollisionHandler : MonoBehaviour
                 //Get the player's collision damage & reduce enemy's health
                 int intPlayerDamage = playerHealthSystem.DealDamage();
                 other.gameObject.GetComponent<HealthSystem>().TakeDamage(intPlayerDamage);
-                Debug.Log("Enemy HP: " + other.gameObject.GetComponent<HealthSystem>().getHp());
+                //Debug.Log("Enemy HP: " + other.gameObject.GetComponent<HealthSystem>().getHp());
 
                 break;
             case "Fuel":

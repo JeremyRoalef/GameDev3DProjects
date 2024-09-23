@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
     //Method to thrust the player
     void MovePlayerVertically()
     {
-        if (Input.GetKey(KeyCode.Space)) //Set KeyCode enumeration type to Space
+        if (Input.GetKey(KeyCode.W)) //Set KeyCode enumeration type to Space
         {
             fltRemainingFuelTime -= Time.deltaTime;
             if (fltRemainingFuelTime <= 0)

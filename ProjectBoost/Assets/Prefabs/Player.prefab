@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 1086394213831220747}
   - component: {fileID: 205898940784612046}
   - component: {fileID: 8409508087736707138}
+  - component: {fileID: 1022916311436952375}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -282,6 +283,7 @@ MonoBehaviour:
   successSFX: {fileID: 8300000, guid: fe1528952cd2b3b448ea4958701547db, type: 3}
   crashParticles: {fileID: 6216293596476333500}
   successParticles: {fileID: 1797690448506691563}
+  gameUI: {fileID: 0}
 --- !u!82 &1131072175622203469
 AudioSource:
   m_ObjectHideFlags: 0
@@ -438,6 +440,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: 14ecd4e6cc72e2c409ef08a4f48f8f73, type: 2}
+--- !u!114 &1022916311436952375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813958144719580712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314c5ed63c1e2214bbfecd707551c63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 5952119386190248497, guid: e2fe61ec685573243b8326deb4ddfb37, type: 3}
+  fltPosOffset: 1
 --- !u!1 &1614920932460761378
 GameObject:
   m_ObjectHideFlags: 0

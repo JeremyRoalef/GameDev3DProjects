@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
     public bool TakeDamage(int intDamageTaken)
     {
         intHp -= intDamageTaken;
-        if (intHp < 0)
+        if (intHp <= 0)
         {
             return true;
         }

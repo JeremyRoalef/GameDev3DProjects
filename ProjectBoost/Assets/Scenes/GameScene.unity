@@ -548,6 +548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1022916311436952375, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
+      propertyPath: fltPosOffset
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4607706957260817640, guid: 374f92bab61446f47ba3dadaba4079cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
