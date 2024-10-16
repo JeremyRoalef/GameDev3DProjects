@@ -33,6 +33,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovePlayer();
+        RotatePlayer();
+
+    }
+
+    void MovePlayer()
+    {
         //using new input system
 
         /*
@@ -59,8 +66,13 @@ public class PlayerController : MonoBehaviour
 
         //Set local position (DO NOT USE transform.Translate!
         transform.localPosition = new Vector3(
-            fltClampedXPos, 
-            fltClampedYPos, 
+            fltClampedXPos,
+            fltClampedYPos,
             transform.localPosition.z);
+    }
+
+    void RotatePlayer()
+    {
+        transform.localRotation = Quaternion.Euler(-30f,30f,0f); //local rotation will be set to -30 xdeg, 30 ydeg, and 0 zdeg
     }
 }
