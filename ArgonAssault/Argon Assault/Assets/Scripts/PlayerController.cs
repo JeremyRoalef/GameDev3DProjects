@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] InputAction movement; //sf for input action
     [SerializeField] InputAction fire; //sf for firing
+    [SerializeField] float fltMoveSpeed = 0.1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +29,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float fltHorizontalMovement = Input.GetAxis("Horizontal"); //horizontal is the axis name
-        //Debug.Log(fltHorizontalMovement);
-
-        //float fltVerticalMovement = Input.GetAxis("Vertical"); //Vertical is the axis name
-        //Debug.Log(fltVerticalMovement);
-
         //using new input system
 
         /*
@@ -45,7 +41,12 @@ public class PlayerController : MonoBehaviour
         float fltHorizontalMovement = movement.ReadValue<Vector2>().x; //read the vector2 value attached to movement InputAction as set up in unity editor
         float fltVerticalMovement = movement.ReadValue<Vector2>().y;
 
-        Debug.Log(fltHorizontalMovement);
-        Debug.Log(fltVerticalMovement);
+        float fltXOffset = fltHorizontalMovement * fltMoveSpeed;
+        float fltYOffset = fltVerticalMovement * fltMoveSpeed;
+
+        transform.localPosition = new Vector3(
+            transform.localPosition.x + fltXOffset, 
+            transform.localPosition.y + fltYOffset, 
+            transform.localPosition.z);
     }
 }

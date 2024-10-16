@@ -621,6 +621,10 @@ PrefabInstance:
       value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 5216096998448369266, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
+      propertyPath: fltMoveSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216096998448369266, guid: 70bc6b6358059e04bbf40b0ecb70b375, type: 3}
       propertyPath: movement.m_Id
       value: 2a238672-5ebf-4c43-a0d3-45eaff510ba5
       objectReference: {fileID: 0}
