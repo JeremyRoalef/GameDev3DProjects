@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.InputSystem; //get the new input system
 
@@ -13,6 +14,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float fltMoveSpeed = 0.1f;
     [SerializeField] float fltXMin, fltXMax, fltYMin, fltYMax;
 
+    [Header("Rotations")]
+    [SerializeField] float fltPitchFactor = 2f;
+    [SerializeField] float fltVerticalMovementPitchFactor = 2f;
+    [SerializeField] float fltYawFactor = 2f;
+    [SerializeField] float fltRollFactor = 2f;
+
+
+    float fltHorizontalMovement;
+    float fltVerticalMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +43,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         MovePlayer();
         RotatePlayer();
 
@@ -49,8 +61,8 @@ public class PlayerController : MonoBehaviour
          */
 
         //get input values
-        float fltHorizontalMovement = movement.ReadValue<Vector2>().x; //read the vector2 value attached to movement InputAction as set up in unity editor
-        float fltVerticalMovement = movement.ReadValue<Vector2>().y;
+        fltHorizontalMovement = movement.ReadValue<Vector2>().x; //read the vector2 value attached to movement InputAction as set up in unity editor
+        fltVerticalMovement = movement.ReadValue<Vector2>().y;
 
         //calculate offset given speed, movement, & delta time
         float fltXOffset = fltHorizontalMovement * fltMoveSpeed * Time.deltaTime;
@@ -73,6 +85,13 @@ public class PlayerController : MonoBehaviour
 
     void RotatePlayer()
     {
-        transform.localRotation = Quaternion.Euler(-30f,30f,0f); //local rotation will be set to -30 xdeg, 30 ydeg, and 0 zdeg
+        //Pitch will be calculated by taking the player's current position * muiltiplying it by a factor to create teh pitch rotation. Factor will be
+        //negative b/c the rotation is inverted to what was expected
+
+        float fltPitch = (transform.localPosition.y * fltPitchFactor) + (fltVerticalMovement * fltVerticalMovementPitchFactor); //x rotation
+        float fltYaw = transform.localPosition.x * fltYawFactor; //y rotation
+        float fltRoll = fltHorizontalMovement * fltRollFactor; //z rotation
+
+        transform.localRotation = Quaternion.Euler(fltPitch,fltYaw,fltRoll); //local rotation will be set to -30 xdeg, 30 ydeg, and 0 zdeg
     }
 }
