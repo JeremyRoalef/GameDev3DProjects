@@ -5,9 +5,13 @@ using UnityEngine.InputSystem; //get the new input system
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Input Actions")]
     [SerializeField] InputAction movement; //sf for input action
     [SerializeField] InputAction fire; //sf for firing
+
+    [Header("Variables")]
     [SerializeField] float fltMoveSpeed = 0.1f;
+    [SerializeField] float fltXMin, fltXMax, fltYMin, fltYMax;
 
 
     // Start is called before the first frame update
@@ -37,16 +41,26 @@ public class PlayerController : MonoBehaviour
          * and storing the positive/negative value of right/left in d/a and up/down value in w/s.
          */
 
-
+        //get input values
         float fltHorizontalMovement = movement.ReadValue<Vector2>().x; //read the vector2 value attached to movement InputAction as set up in unity editor
         float fltVerticalMovement = movement.ReadValue<Vector2>().y;
 
+        //calculate offset given speed, movement, & delta time
         float fltXOffset = fltHorizontalMovement * fltMoveSpeed * Time.deltaTime;
         float fltYOffset = fltVerticalMovement * fltMoveSpeed * Time.deltaTime;
 
+        //Create new position
+        float fltXPos = transform.localPosition.x + fltXOffset;
+        float fltYPos = transform.localPosition.y + fltYOffset;
+
+        //Clamp position. (Clamp the value of the offset between the minimum and maximum of the x,y value)
+        float fltClampedXPos = Mathf.Clamp(fltXPos, fltXMin, fltXMax);
+        float fltClampedYPos = Mathf.Clamp(fltYPos, fltYMin, fltYMax);
+
+        //Set local position (DO NOT USE transform.Translate!
         transform.localPosition = new Vector3(
-            transform.localPosition.x + fltXOffset, 
-            transform.localPosition.y + fltYOffset, 
+            fltClampedXPos, 
+            fltClampedYPos, 
             transform.localPosition.z);
     }
 }
