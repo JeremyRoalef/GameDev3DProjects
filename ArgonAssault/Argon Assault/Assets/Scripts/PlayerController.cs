@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
         float fltHorizontalMovement = movement.ReadValue<Vector2>().x; //read the vector2 value attached to movement InputAction as set up in unity editor
         float fltVerticalMovement = movement.ReadValue<Vector2>().y;
 
-        float fltXOffset = fltHorizontalMovement * fltMoveSpeed;
-        float fltYOffset = fltVerticalMovement * fltMoveSpeed;
+        float fltXOffset = fltHorizontalMovement * fltMoveSpeed * Time.deltaTime;
+        float fltYOffset = fltVerticalMovement * fltMoveSpeed * Time.deltaTime;
 
         transform.localPosition = new Vector3(
             transform.localPosition.x + fltXOffset, 
