@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
-using UnityEngine.InputSystem; //get the new input system
+using UnityEngine.InputSystem; //get the new input system. Be sure to install the new input system from package manager
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Input Actions")]
-    [SerializeField] InputAction movement; //sf for input action
+    [SerializeField] InputAction movement; //sf for movement
     [SerializeField] InputAction fire; //sf for firing
 
     [Header("Variables")]
@@ -27,28 +27,28 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void OnEnable() //this method is called after awake and before start. Called in the initialization order of events.
     {
         movement.Enable(); //enable the movement input action
+        fire.Enable();
     }
 
     private void OnDisable()
     {
         movement.Disable(); //disable the movement inputaction when not being used.
+        fire.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         MovePlayer();
         RotatePlayer();
-
-    }
+        FireProjectile();
+        }
 
     void MovePlayer()
     {
@@ -92,6 +92,18 @@ public class PlayerController : MonoBehaviour
         float fltYaw = transform.localPosition.x * fltYawFactor; //y rotation
         float fltRoll = fltHorizontalMovement * fltRollFactor; //z rotation
 
-        transform.localRotation = Quaternion.Euler(fltPitch,fltYaw,fltRoll); //local rotation will be set to -30 xdeg, 30 ydeg, and 0 zdeg
+        transform.localRotation = Quaternion.Euler(fltPitch, fltYaw, fltRoll); //local rotation will be set to -30 xdeg, 30 ydeg, and 0 zdeg
+    }
+
+    void FireProjectile()
+    {
+        if (fire.ReadValue<float>() > 0)
+        {
+            Debug.Log("Shooting...");
+        }
+        else
+        {
+            Debug.Log("Not shooting");
+        }
     }
 }
