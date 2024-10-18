@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputAction fire; //sf for firing
 
     [Header("Variables")]
-    [SerializeField] float fltMoveSpeed = 0.1f;
-    [SerializeField] float fltXMin, fltXMax, fltYMin, fltYMax;
+    [Tooltip("How fast the ship will move up and down")] [SerializeField] float fltMoveSpeed = 0.1f; //tooltip creates a popup in unity editor if the user hovers over the variable
+    [Tooltip("Enter the boundaries of the player movement as defined by the camera")][SerializeField] float fltXMin, fltXMax, fltYMin, fltYMax;
     [SerializeField] GameObject[] lasers;
 
     [Header("Rotations")]
