@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Variables")]
     [SerializeField] float fltMoveSpeed = 0.1f;
     [SerializeField] float fltXMin, fltXMax, fltYMin, fltYMax;
+    [SerializeField] GameObject[] lasers;
 
     [Header("Rotations")]
     [SerializeField] float fltPitchFactor = 2f;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         RotatePlayer();
         FireProjectile();
-        }
+    }
 
     void MovePlayer()
     {
@@ -99,11 +100,28 @@ public class PlayerController : MonoBehaviour
     {
         if (fire.ReadValue<float>() > 0)
         {
-            Debug.Log("Shooting...");
+            ActivateLasers();
         }
         else
         {
-            Debug.Log("Not shooting");
+            DeactivateLasers();
         }
     }
+
+    void ActivateLasers()
+    {
+        foreach (GameObject laser in lasers)
+        {
+            laser.SetActive(true);
+        }
+    }
+
+    void DeactivateLasers()
+    {
+        foreach (GameObject laser in lasers)
+        {
+            laser.SetActive(false);
+        }
+    }
+
 }

@@ -424,6 +424,9 @@ MonoBehaviour:
   fltXMax: 10
   fltYMin: -2.5
   fltYMax: 11
+  lasers:
+  - {fileID: 929206751447732584}
+  - {fileID: 7267958010584053975}
   fltPitchFactor: -3
   fltVerticalMovementPitchFactor: -3
   fltYawFactor: -0.5
@@ -2659,6 +2662,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4120357334633774758, guid: 0dde9118c43796d45b0822b003947d3e, type: 3}
   m_PrefabInstance: {fileID: 2489822055670555946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7267958010584053975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5066944006588210685, guid: 0dde9118c43796d45b0822b003947d3e, type: 3}
+  m_PrefabInstance: {fileID: 2489822055670555946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5383017771058842773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2716,6 +2724,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dde9118c43796d45b0822b003947d3e, type: 3}
+--- !u!1 &929206751447732584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5066944006588210685, guid: 0dde9118c43796d45b0822b003947d3e, type: 3}
+  m_PrefabInstance: {fileID: 5383017771058842773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8330006805343547955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120357334633774758, guid: 0dde9118c43796d45b0822b003947d3e, type: 3}
