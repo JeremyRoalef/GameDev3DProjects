@@ -214,7 +214,7 @@ TerrainCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: b0b2b4587cf928341a31f89344a89372, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &224778990
 Terrain:
   m_ObjectHideFlags: 0
@@ -468,6 +468,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040149573}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1575756836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 475478511039057996, guid: c38416e84979ff54598b7810d987561e, type: 3}
+  m_PrefabInstance: {fileID: 4881627247006305046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1575756843
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575756836}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &2040474228 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 941528991579955578, guid: c38416e84979ff54598b7810d987561e, type: 3}
@@ -583,7 +615,10 @@ PrefabInstance:
     - {fileID: 8371772962954747779, guid: c38416e84979ff54598b7810d987561e, type: 3}
     - {fileID: 6834688577365936159, guid: c38416e84979ff54598b7810d987561e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 475478511039057996, guid: c38416e84979ff54598b7810d987561e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1575756843}
   m_SourcePrefab: {fileID: 100100000, guid: c38416e84979ff54598b7810d987561e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
