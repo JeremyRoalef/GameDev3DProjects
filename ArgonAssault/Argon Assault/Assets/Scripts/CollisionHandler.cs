@@ -16,7 +16,8 @@ public class CollisionHandler : MonoBehaviour
 
         explosionVFX.SetActive(true);
         GetComponent<MeshRenderer>().enabled = false;
-        
+        GetComponent<BoxCollider>().enabled = false;
+
         StartCoroutine(StartDeathSequence());
     }
 
