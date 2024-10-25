@@ -871,6 +871,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1714747128114177172, guid: abd13754e4e9abc4da97dfe31f52cdce, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3450651315963590275, guid: abd13754e4e9abc4da97dfe31f52cdce, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -879,6 +883,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2095940575}
+    - target: {fileID: 8976167628616967163, guid: abd13754e4e9abc4da97dfe31f52cdce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -49.17979
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976167628616967163, guid: abd13754e4e9abc4da97dfe31f52cdce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -68.75003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976167628616967163, guid: abd13754e4e9abc4da97dfe31f52cdce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 44.87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
