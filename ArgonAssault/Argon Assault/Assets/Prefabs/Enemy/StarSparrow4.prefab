@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775b5f2c000c1324190b53e9416d2300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explsionVFX: {fileID: 3200836327345539238, guid: 89e09b7b13deb66449ea460b90a166d9, type: 3}
-  parent: {fileID: 0}
+  DeathFX: {fileID: 3200836327345539238, guid: 89e09b7b13deb66449ea460b90a166d9, type: 3}
   hitVFX: {fileID: 3200836327345539238, guid: bbef0a2226190734dbb86d2d036339f1, type: 3}
   scoreValue: 100
   intHp: 100
