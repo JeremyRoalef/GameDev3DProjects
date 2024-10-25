@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.useGravity = false;
+
         intHp = 100;
         scoreBoard = FindObjectOfType<ScoreBoard>(); //find the first ohject with the scoreboard script
     }
