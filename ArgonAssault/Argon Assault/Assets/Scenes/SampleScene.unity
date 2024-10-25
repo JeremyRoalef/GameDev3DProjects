@@ -269,11 +269,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &618303771 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3136234475640177779, guid: d26d67983994ca6479731d7961217e10, type: 3}
-  m_PrefabInstance: {fileID: 6376507144604303785}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explsionVFX: {fileID: 3200836327345539238, guid: 89e09b7b13deb66449ea460b90a166d9, type: 3}
-  parent: {fileID: 618303771}
   hitVFX: {fileID: 3200836327345539238, guid: bbef0a2226190734dbb86d2d036339f1, type: 3}
   scoreValue: 15
   intHp: 100
@@ -836,6 +830,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6456895366179010076, guid: d26d67983994ca6479731d7961217e10, type: 3}
       propertyPath: m_Name
+      value: SpawnAtRuntime
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456895366179010076, guid: d26d67983994ca6479731d7961217e10, type: 3}
+      propertyPath: m_TagString
       value: SpawnAtRuntime
       objectReference: {fileID: 0}
     m_RemovedComponents: []
